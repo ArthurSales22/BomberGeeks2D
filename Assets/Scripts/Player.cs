@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.Events;
+using System;
+
+
+
 
 public class Player : NetworkBehaviour
 {
@@ -10,9 +15,23 @@ public class Player : NetworkBehaviour
     float inputY;
     public float speed = 3;
 
+    [SyncVar]
+    public int coins;
+    public Color playerColor;
+
+    [Serializable]
+    public class IntEvent : UnityEvent<int> { }
+
+    public IntEvent OnCoinCollect;
+
+
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D> ();
+        GetComponent<SpriteRenderer>().color = playerColor;
+
     }
 
     // Update is called once per frame
@@ -38,5 +57,22 @@ public class Player : NetworkBehaviour
     {
         Debug.Log("Player pediu uma mensagem!");
     }
+    [Server]
+    public void AddCoins()
+    {
+        coins += 1;
+        OnCoinCollect.Invoke(coins);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Coin"))
+        {
+            AddCoins();
+            MyNetworkManager.spawnedCoins--;
+            Destroy(collision.gameObject);
+        }
+    }
+
 
 }
