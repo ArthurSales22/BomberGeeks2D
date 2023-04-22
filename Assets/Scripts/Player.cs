@@ -69,8 +69,10 @@ public class Player : NetworkBehaviour
         if (collision.CompareTag("Coin"))
         {
             AddCoins();
-            MyNetworkManager.spawnedCoins--;
+            MyNetWorkManager.spawnedCoins--;
             Destroy(collision.gameObject);
+            Debug.Log("pegou");
+            
         }
     }
 
