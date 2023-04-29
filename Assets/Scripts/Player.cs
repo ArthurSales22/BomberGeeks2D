@@ -31,6 +31,7 @@ public class Player : NetworkBehaviour
     {
         rb = GetComponent<Rigidbody2D> ();
         GetComponent<SpriteRenderer>().color = playerColor;
+        GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>().AddPlayerListener(this);
 
     }
 

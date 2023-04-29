@@ -1754,7 +1754,7 @@ GameObject:
   - component: {fileID: 1511903714}
   m_Layer: 0
   m_Name: gamemanager
-  m_TagString: Untagged
+  m_TagString: HUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1774,8 +1774,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  textCoinsP1: {fileID: 0}
-  textCoinsP2: {fileID: 0}
+  textCoinsP1: {fileID: 551626842}
+  textCoinsP2: {fileID: 1478462159}
 --- !u!114 &1511903715
 MonoBehaviour:
   m_ObjectHideFlags: 0
